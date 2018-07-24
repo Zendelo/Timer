@@ -1,9 +1,9 @@
 from math import floor
-from time import time, localtime, sleep, strftime
+from time import time, localtime, strftime
 
 
 class Timer:
-    """Simple Timer class which prints elapsed time since its creation"""
+    """Simple timer class which prints elapsed time since its creation"""
 
     def __init__(self, name):
         self.name = name
@@ -28,20 +28,16 @@ class Timer:
             hours = elapsed / 3600
             minutes = hours % 60
             hours = floor(hours)
-            print("{} {} took {} hours and {:.2f} {} to complete".format(self.__get_timestamp__(), self.name, hours, minutes, unit))
+            print("{} {} took {} hours and {:.2f} {} to complete".format(self.__get_timestamp__(), self.name, hours,
+                                                                         minutes, unit))
         elif elapsed >= 60:
             minutes = floor(elapsed / 60)
             seconds = elapsed % 60
-            print("{} {} took {} minutes and {:.2f} {} to complete".format(self.__get_timestamp__(), self.name, minutes, seconds, unit))
+            print("{} {} took {} minutes and {:.2f} {} to complete".format(self.__get_timestamp__(), self.name, minutes,
+                                                                           seconds, unit))
         else:
             print("{} {} took {:.2f} {} to complete".format(self.__get_timestamp__(), self.name, elapsed, unit))
 
     @staticmethod
     def __get_timestamp__():
         return "{} -".format(strftime('%H:%M:%S', localtime(time())))
-
-
-if __name__ == "__main__":
-    test = Timer("Timer Testing")
-    sleep(5)
-    test.stop()
